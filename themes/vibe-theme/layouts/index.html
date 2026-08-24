@@ -1,0 +1,70 @@
+{{ define "main" }}
+{{ $hero := resources.Get "images/engineering-hero.png" }}
+{{ with $hero }}{{ $hero = . | resources.Fingerprint }}{{ end }}
+<section class="hero{{ if $hero }} hero--with-image{{ end }}"{{ with $hero }} style="--hero-image: url('{{ .RelPermalink }}')"{{ end }}>
+    <div class="hero-content">
+        <p class="hero-kicker">{{ .Site.Params.field }}</p>
+        <h1 class="hero-title">{{ .Site.Title }}</h1>
+        <p class="hero-subtitle hero-subtitle--rich">
+            <span class="hero-line">I use this space to document <strong>circuits</strong>, <strong>embedded systems</strong>, <strong>power electronics</strong>, and the practical work behind engineering ideas.</span>
+            <span class="hero-line">The site is part <strong>lab notebook</strong>, part <strong>project archive</strong>, and part <strong>research record</strong>.</span>
+            <span class="hero-line">Writing here should make designs easier to revisit, explain, test, and improve.</span>
+        </p>
+    </div>
+</section>
+
+<div class="home-sections">
+    {{ $recentPosts := first 5 ((where .Site.RegularPages "Section" "posts").ByDate.Reverse) }}
+    <section class="recent-posts">
+        <h2>Recent Writing & Lab Notes</h2>
+        {{ if $recentPosts }}
+        <ul class="post-list">
+            {{ range $recentPosts }}
+            <li class="post-item">
+                <span class="post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+                <a href="{{ .Permalink }}" class="post-link">{{ .Title }}</a>
+            </li>
+            {{ end }}
+        </ul>
+        {{ end }}
+        <a href="/posts/" class="view-all">View writing &rarr;</a>
+    </section>
+
+    {{ $recentResearch := first 3 ((where .Site.RegularPages "Section" "research").ByDate.Reverse) }}
+    <section class="recent-research">
+        <h2>Research & Publications</h2>
+        {{ if $recentResearch }}
+        <div class="research-list">
+            {{ range $recentResearch }}
+            <article class="research-item">
+                <div class="research-meta">
+                    {{ with .Params.status }}<span>{{ . }}</span>{{ end }}
+                    {{ with .Params.venue }}<span>{{ . }}</span>{{ end }}
+                    <time>{{ .Date.Format "2006" }}</time>
+                </div>
+                <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                <p>{{ .Description | truncate 130 }}</p>
+            </article>
+            {{ end }}
+        </div>
+        {{ end }}
+        <a href="/research/" class="view-all">View research &rarr;</a>
+    </section>
+
+    {{ $latestProjects := first 4 ((where .Site.RegularPages "Section" "projects").ByDate.Reverse) }}
+    <section class="recent-projects">
+        <h2>Engineering Projects</h2>
+        {{ if $latestProjects }}
+        <div class="project-grid">
+            {{ range $latestProjects }}
+            <div class="project-card">
+                <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                <p>{{ .Description | truncate 100 }}</p>
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+        <a href="/projects/" class="view-all">View all projects &rarr;</a>
+    </section>
+</div>
+{{ end }}

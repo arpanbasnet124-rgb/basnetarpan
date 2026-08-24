@@ -1,0 +1,36 @@
+{{ define "main" }}
+<header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ if .Description }}
+    <p class="page-description">{{ .Description }}</p>
+    {{ end }}
+</header>
+
+<div class="content-list">
+    {{ range .Pages.ByDate.Reverse }}
+    <article class="list-item">
+        <h2 class="item-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        {{ if or .Date .Params.status .Params.venue .Params.authors }}
+        <div class="item-meta">
+            {{ if .Date }}<time>{{ .Date.Format "January 2, 2006" }}</time>{{ end }}
+            {{ with .Params.status }}<span>{{ . }}</span>{{ end }}
+            {{ with .Params.venue }}<span>{{ . }}</span>{{ end }}
+            {{ with .Params.authors }}<span>{{ delimit . ", " }}</span>{{ end }}
+        </div>
+        {{ end }}
+        <div class="item-summary">
+            {{ .Summary }}
+        </div>
+        {{ if or .Params.doi .Params.pdf .Params.code .Params.external }}
+        <div class="item-links">
+            {{ with .Params.doi }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">DOI</a>{{ end }}
+            {{ with .Params.pdf }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">PDF</a>{{ end }}
+            {{ with .Params.code }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">Code</a>{{ end }}
+            {{ with .Params.external }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">Link</a>{{ end }}
+        </div>
+        {{ end }}
+        <a href="{{ .Permalink }}" class="read-more">Read more &rarr;</a>
+    </article>
+    {{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,46 @@
+baseURL = 'https://basnetarpan.com/'
+locale = 'en-US'
+title = 'Arpan Basnet'
+theme = 'vibe-theme'
+summaryLength = 30
+
+[params]
+  author = "Arpan Basnet"
+  description = "Electrical and electronics engineering portfolio, lab notebook, project archive, and research record."
+  field = "Electrical & Electronics Engineering"
+  github = "https://github.com/arpanbasnet124-rgb"
+  linkedin = "https://www.linkedin.com/in/arpan-basnet-b3b349331/"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+
+  [[menu.main]]
+    name = "Experience"
+    url = "/experiences/"
+    weight = 30
+
+  [[menu.main]]
+    name = "Writing"
+    url = "/posts/"
+    weight = 40
+
+  [[menu.main]]
+    name = "Research"
+    url = "/research/"
+    weight = 50
+
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 60
+
+[taxonomies]
+  tag = "tags"
+  area = "areas"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = false

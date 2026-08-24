@@ -1,0 +1,11 @@
+name = "vibe-theme"
+license = "MIT"
+description = "A bespoke, reading-focused Modern Dark Mode Hugo theme."
+homepage = "https://basnetarpan.com/"
+tags = ["blog", "portfolio", "engineering", "research", "dark-mode", "minimal"]
+features = ["blog", "portfolio", "research records", "dark-mode"]
+min_version = "0.112.0"
+
+[author]
+  name = "Arpan Basnet"
+  homepage = "https://basnetarpan.com/"
