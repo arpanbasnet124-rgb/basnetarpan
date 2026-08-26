@@ -7,8 +7,8 @@
     </p>
 
     <div class="utility-page__actions">
-        <a href="{{ "/" | relLangURL }}" class="read-more">Back home</a>
-        <a href="{{ "/posts/" | relLangURL }}" class="read-more">Browse writing</a>
+        <a href="{{ .Site.Home.RelPermalink }}" class="read-more">Back home</a>
+        <a href="{{ "posts/" | relLangURL }}" class="read-more">Browse writing</a>
     </div>
 </section>
 {{ end }}
